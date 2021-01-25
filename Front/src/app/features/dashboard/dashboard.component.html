@@ -1,0 +1,105 @@
+
+
+
+<form action="" [formGroup]="formRegSedex">
+
+  <div class="p-grid">
+    <div class="p-col-5">
+      <p-fieldset legend="Remetente">
+        <div class="p-fluid p-formgrid p-grid">
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="">Empresa</label>
+            <p-dropdown [options]="empresaModel" optionLabel="emp_razao_social" placeholder="SELECIONE"
+              formControlName="emp_codigo"></p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="">Espeditor</label>
+            <p-dropdown [options]="remetenteModel" optionLabel="rem_abreviado" placeholder="SELECIONE"
+              formControlName="rem_codigo"></p-dropdown>
+          </div>
+
+        </div>
+      </p-fieldset>
+    </div>
+
+
+    <div class="p-col-7">
+
+      <p-fieldset legend="Destinatário">
+
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-sm-4">
+            <label for="">Estado:</label>
+            <p-dropdown [options]="estadoModel" optionLabel="estado" placeholder="SELECIONE"
+              formControlName="est_codigo"></p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="">Cidade:</label>
+            <p-dropdown [options]="cidadeModel" optionLabel="municipio" [filter]="true" [virtualScroll]="true"
+              itemSize="5" placeholder="SELECIONE" formControlName="cid_codigo"></p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="">Aos Cuidados de:</label>
+            <p-dropdown [options]="destinatarioModel" optionLabel="des_aos_cuidados_abrev" placeholder="SELECIONE"
+              formControlName="des_codigo"></p-dropdown>
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <button pButton label="Registrar" (click)="saveRegistro()"></button>
+          </div>
+        </div>
+
+      </p-fieldset>
+    </div>
+  </div>
+
+</form>
+
+<form [formGroup]="formItens" [hidden]="formItensDisabled">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <p-fieldset legend="Itens a serem enviados">
+        <div class="p-fluid p-formgrid p-grid">
+
+          <div class="p-field p-col-12 p-sm-5">
+            <label for="">Tipo Item:</label>
+            <p-dropdown [options]="tipoItemModel" optionLabel="tit_tipo_item" placeholder="SELECIONE"
+              formControlName="tit_codigo"></p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-sm-6">
+            <label for="">Descrição:</label>
+            <input type="text" formControlName="" pInputText formControlName="ips_descricao">
+          </div>
+
+          <div class="p-field p-col-12 p-sm-2">
+            <button pButton type="button" label="Incluir" (click)="saveItens()"></button>
+          </div>
+
+        </div>
+      </p-fieldset>
+    </div>
+    <div class="p-col-6">
+      <p-table [value]="itensArray">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Tipo Item</th>
+            <th>Descricao</th>
+
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-dest>
+          <tr>
+            <td>{{dest.tit_codigo.tit_tipo_item}}</td>
+            <td>{{dest.ips_descricao}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+</form>

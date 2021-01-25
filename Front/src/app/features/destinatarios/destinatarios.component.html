@@ -1,0 +1,125 @@
+<p-panel header="Cadastros">
+  <div class="p-grid">
+    <div class="p-col-8" [formGroup]="formDest" >
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-3">
+          <label for="destinatarios">Destinatários*:</label>
+          <input id="destinatarios" type="text" pInputText formControlName="des_destinatario">
+          <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['des_destinatario'].valid&&formDest.controls['des_destinatario'].touched"></p-message>
+        </div>
+
+        <div class="p-field p-col-12 p-md-4">
+          <label for="firstname">Aos Cuidados de:</label>
+          <input id="firstname" type="text" pInputText formControlName="des_aos_cuidados">
+          <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['des_aos_cuidados'].valid&&formDest.controls['des_aos_cuidados'].touched"></p-message>
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="firstname">A.C.Abreviado:</label>
+          <input id="firstname" type="text" pInputText formControlName="des_aos_cuidados_abrev">
+          <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['des_aos_cuidados_abrev'].valid&&formDest.controls['des_aos_cuidados_abrev'].touched"></p-message>
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="firstname">C.P.F:</label>
+          <input id="firstname" type="text" pInputText formControlName="des_cpf" maxlength="11">
+        </div>
+      </div>
+        <p-fieldset legend="Endereço:">
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-2">
+              <label for="cep">CEP::</label>
+              <input id="cep" type="text" pInputText formControlName="des_cep" maxlength="8">
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="logradouro">Logradouro:</label>
+              <input id="logradouro" type="text" pInputText formControlName="des_logradouro">
+              <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['des_logradouro'].valid&&formDest.controls['des_logradouro'].touched"></p-message>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
+              <label for="">Setor/Bairro/Distrito:</label>
+              <input id="" type="text" pInputText formControlName="des_bairro">
+              <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['des_bairro'].valid&&formDest.controls['des_bairro'].touched"></p-message>
+            </div>
+
+            <div class="p-field p-col-12 p-md-1">
+                <label for="">Número:</label>
+                <input id="" type="text" pInputText formControlName="des_numero" maxlength="4">
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="">Quadra/Lote/Complemento:</label>
+                <input id="" type="text" pInputText formControlName="des_complemento">
+              </div>
+
+              <div class="p-field p-col-12 p-md-3">
+                <label for="">Estado:</label>
+                <p-dropdown [options]="estados" optionLabel="estado" [filter]="true"
+                formControlName="est_estado" placeholder="SELECIONE"></p-dropdown>
+                <!--<select name="estado" (change)="getCidade()" [(ngModel)]="estado" pInputText formControlName="est_estado">
+                  <option *ngFor="let estado of estados" [value]="estado.est_codigo">{{estado.estado}}</option>
+                  <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['est_estado'].valid&&formDest.controls['est_estado'].touched"></p-message>
+                </select>-->
+              </div>
+
+              <div class="p-field p-col-12 p-md-5">
+                <label for="">Cidade:</label>
+                <p-dropdown [options]="cidades" optionLabel="municipio" formControlName="cid_cidade" placeholder="SELECIONE" [filter]="true"></p-dropdown>
+                <!--<select name="cidade" pInputText formControlName="cid_cidade">
+                  <option *ngFor="let cidade of cidades" [value]="cidade.cid_codigo" >{{cidade.municipio}}</option>
+                  <p-message severity="error" text="Campo obrigatório" *ngIf="!formDest.controls['cid_cidade'].valid&&formDest.controls['cid_cidade'].touched"></p-message>
+                </select>-->
+              </div>
+
+              <div class="p-field p-col-12 p-md-2">
+                <label for="">Telefone:</label>
+                <p-inputMask mask="(99)9999-9999" formControlName="des_fixo"></p-inputMask>
+              </div>
+
+              <div class="p-field p-col-12 p-md-2">
+                <label for="">Celular:</label>
+                <p-inputMask mask="(99)99999-9999" formControlName="des_movel"></p-inputMask>
+              </div>
+
+              <div class="p-field p-col-12 p-md-2">
+                <label for="">Latitude:</label>
+                <input pInputText formControlName="des_latitude">
+              </div>
+
+              <div class="p-field p-col-12 p-md-2">
+                <label for="">Longitude:</label>
+                <input pInputText formControlName="des_longitude">
+              </div>
+
+              <div class="p-field p-col-12 p-md-5">
+                <label for="">Transportadora:</label>
+                <p-dropdown [options]="empTransp" optionLabel="emp_razao_social" placeholder="SELECIONE" formControlName="des_transpotadora"></p-dropdown>
+              </div>
+              <div class="p-field p-col-12 p-md-5"></div>
+
+              <div class="p-field p-col-12 p-md-2">
+                <button pButton label="Salvar" icon="fas fa-save" class="ui-button-success"
+                (click)="saveDestinatario()" [disabled]="!formDest.valid"></button>
+              </div>
+              <div class="p-field p-col-12 p-md-2">
+                <button pButton label="Cancelar" icon="fas fa-ban" class="ui-button-danger" (click)="calcelar()" ></button>
+              </div>
+              <div class="p-field p-col-12 p-md-2">
+                <button pButton label="Localizar" icon="fas fa-search" class="ui-button-primary" [disabled]="true"></button>
+              </div>
+
+        </div>
+        </p-fieldset>
+    </div>
+
+    <div class="p-col" style="background-color: rgb(235, 235, 235);">
+        <map name="" >
+
+        </map>
+    </div>
+  </div>
+
+</p-panel>

@@ -1,0 +1,75 @@
+<div class="p-grid">
+
+  <div class="p-col">
+    <p-card header="Total Envios:">
+      <p>15</p>
+    </p-card>
+  </div>
+
+  <div class="p-col">
+    <p-card header="Envios não despachados:">
+    </p-card>
+  </div>
+
+  <div class="p-col">
+    <p-card header="Custo total dos envios:">
+      <p>R$: 250,00</p>
+    </p-card>
+  </div>
+
+</div>
+<hr>
+<div class="p-grid">
+  <div class="p-col-2">
+    <button pButton pRipple label="Novo Registro" icon="fas fa-folder-plus"
+      class="ui-button-rounded ui-button-secondary" style="font-size: 15px; text-align: center;" (click)="click()"
+      [disabled]="btnNovoRegistro"></button>
+  </div>
+
+</div>
+<p-table [value]="regsedex" [paginator]="true" [rows]="8" [showCurrentPageReport]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 10px;">Data</th>
+      <th style="width: 40px;">Aos Cuidados</th>
+      <th style="width: 60px;">Cidade</th>
+      <th style="width: 35px;">CEP</th>
+      <th style="width: 5px;"></th>
+    </tr>
+
+  </ng-template>
+  <ng-template pTemplate="body" let-reg>
+    <tr style="text-align: center;">
+      <td>{{reg.sed_data_postagem | date:'dd/MM/yyyy'}}</td>
+      <td>{{reg.des_codigo.des_aos_cuidados_abrev}}</td>
+      <td>{{reg.cid_codigo.municipio}}</td>
+      <td>{{reg.des_codigo.des_cep |  cEP}}</td>
+      <td>
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-sm-4">
+            <a href="#">Editar</a>
+          </div>
+          <div class="p-field p-col-12 p-sm-4">
+            <a (click)="showModalDialog(reg.sed_codigo)">Etiqueta</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+
+<p-dialog header="Etiqueta" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+
+  <div class="p-grid">
+    <div class="p-col-8 border" >
+        Destinatário
+    </div>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayModal=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="displayModal=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

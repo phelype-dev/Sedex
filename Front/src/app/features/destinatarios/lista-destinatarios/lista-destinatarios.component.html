@@ -1,0 +1,46 @@
+<p-toolbar>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-2">
+      <div class="ui-toolbar-group-left">
+        <button pButton type="button" label="Novo Cadastro" icon="pi pi-plus"
+        (click)="novoCadastro()"></button>
+      </div>
+    </div>
+  </div>
+</p-toolbar>
+<br>
+<p-table [value]="destinatario">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Rua</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th>CEP</th>
+      <th>Ativo</th>
+      <th></th>
+    </tr>
+
+  </ng-template>
+  <ng-template pTemplate="body" let-dest>
+    <tr>
+      <td>{{dest.des_aos_cuidados}}</td>
+      <td>{{dest.des_logradouro}}</td>
+      <td>{{dest.cid_cidade.municipio}}</td>
+      <td>{{dest.est_estado.sigla_estado}}</td>
+      <td>{{dest.des_cep}}</td>
+      <td>{{dest.des_ativo}}</td>
+      <td>
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-3">
+            <button pButton class="ui-button-success" icon="fas fa-edit"></button>
+          </div>
+          <div class="p-field p-col-12 p-md-1">
+            <button pButton class="ui-button-danger" icon="fas fa-trash-alt"></button>
+          </div>
+        </div>
+
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

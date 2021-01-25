@@ -1,0 +1,22 @@
+.input-border{
+ height: 30px;
+}
+
+.input-margem{
+  margin-top: 15px;
+}
+
+.btn-delete{
+  background-color: rgb(233, 46, 46);
+  color: #ffffff;
+  border-radius: 20px;
+  border: none;
+  height: 18px;
+}
+
+.btn-editar{
+  margin-top: -50px;
+  margin-bottom: -50px;
+  height: 25px;
+
+}

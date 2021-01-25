@@ -1,0 +1,95 @@
+<p-card header="Cadastro Remetente">
+  <div [formGroup]="form">
+
+    <div class="p-field p-col-12 p-md-12">
+      <p-messages [(value)]="msg"></p-messages>
+     </div>
+
+    <div class="p-fluid p-formgrid p-grid">
+
+      <div class="p-field p-col-12 p-md-3">
+        <label for="remetente">Remetente:</label>
+        <input type="text" name="remetente" id="remetente"
+        formControlName="rem_remetente" pInputText>
+        <p-message severity="error" text="Campo obrigatório"
+        *ngIf="!form.controls['rem_remetente'].valid&&form.controls['rem_remetente'].touched"></p-message>
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <label for="rem_abreviado">Remetente Abreviado:</label>
+        <input type="text" name="rem_abreviado" id="rem_abreviado"
+        formControlName="rem_abreviado" pInputText>
+        <p-message severity="error" text="Campo obrigatório"
+        *ngIf="!form.controls['rem_abreviado'].valid&&form.controls['rem_abreviado'].touched"></p-message>
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <label for="tel_fixo">Tel. Fixo:</label>
+        <p-inputMask mask="(99)9999-9999" formControlName="rem_fixo"></p-inputMask>
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <label for="tel_movel">Tel. Movel:</label>
+        <p-inputMask mask="(99)99999-9999" formControlName="rem_movel"></p-inputMask>
+      </div>
+
+      <div class="p-field p-col-12 p-md-3">
+        <label for="">Empresa:</label>
+        <p-dropdown [options]="empresa" optionLabel="emp_razao_social"
+        placeholder="Selecione" formControlName="emp_codigo"></p-dropdown>
+        <p-message severity="error" text="Campo obrigatório"
+        *ngIf="!form.controls['emp_codigo'].valid&&form.controls['emp_codigo'].touched"></p-message>
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <button pButton label="Cadastrar" class="ui-button-success"
+        (click)="onSave()"></button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <p-panel header="Remetentes">
+    <p-table [value]="remetentes" [paginator]="true" [rows]="7" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 35px;">#</th>
+          <th style="width: 300px;">Remetente</th>
+          <th style="width: 140px;">Rem. Abreviado</th>
+          <th style="width: 130px;">Tel. Fixo</th>
+          <th style="width: 130px;">Tel. Movel</th>
+          <th style="width: 200px;">Empresa</th>
+          <th style="width: 60px;">Ativo</th>
+          <th style="width: 140px;">Ações</th>
+        </tr>
+
+      </ng-template>
+      <ng-template pTemplate="body" let-remet>
+        <tr style="text-align: center; align-items: center;">
+          <td>{{remet.rem_codigo}}</td>
+          <td>{{remet.rem_remetente}}</td>
+          <td>{{remet.rem_abreviado}}</td>
+          <td>{{remet.rem_fixo}}</td>
+          <td>{{remet.rem_movel}}</td>
+          <td>{{remet.emp_codigo.emp_razao_social}}</td>
+          <td>{{remet.rem_ativo ? 'Sim' : 'Não'}}</td>
+          <td>
+            <div class="p-fluid p-formgrid p-grid">
+              <div class="p-field p-col-12 p-md-3">
+                <button pButton class="ui-button-success" icon="fas fa-edit"></button>
+              </div>
+              <div class="p-field p-col-12 p-md-1">
+                <button pButton class="ui-button-danger" icon="fas fa-trash-alt"></button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </p-panel>
+
+</p-card>

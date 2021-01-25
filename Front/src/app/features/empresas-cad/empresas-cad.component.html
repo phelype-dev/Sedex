@@ -1,0 +1,167 @@
+<p-card header="Cadastro de Empresas">
+  <hr>
+  <p-messages [(value)]="msg"></p-messages>
+  <div class="p-field p-col-12">
+  </div>
+  <br>
+  <div class="ui-fluid ui-formgrid p-grid" [formGroup]="formEmpresa">
+    <div class="p-field p-col-12 p-md-2">
+      <span class="ui-float-label">
+        <p-inputMask mask="99.999.999/9999-99" formControlName="emp_cnpj"></p-inputMask>
+        <label>CNPJ*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_razao_social">
+        <label>Razão Social*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_operacoa">
+        <label>Nome Filial</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_descricao">
+        <label>Descrição Empresa</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4 input-margem">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_logradouro">
+        <label>Logradouro*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-1 input-margem">
+      <span class="ui-float-label">
+        <input type="number" pInputText formControlName="emp_numero">
+        <label>Número</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3 input-margem">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_complemento">
+        <label>Complemento</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4 input-margem">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="emp_bairro">
+        <label>Setor/Bairro*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3 input-margem">
+      <span class="ui-float-label">
+        <p-dropdown [options]="cidades" placeholder="." optionLabel="municipio" formControlName="emp_cidade"></p-dropdown>
+        <label>Cidade*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2 input-margem">
+      <span class="ui-float-label">
+        <p-dropdown [options]="estados" placeholder="." optionLabel="sigla_estado" formControlName="emp_estado"></p-dropdown>
+        <label>Estado*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-1 input-margem">
+      <span class="ui-float-label">
+        <p-inputMask mask="99999-999" formControlName="emp_cep"></p-inputMask>
+        <label>CEP*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2 input-margem">
+      <span class="ui-float-label">
+        <p-inputMask mask="(99)9999-9999" formControlName="emp_fixo"></p-inputMask>
+        <label>Telefone</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3 input-margem">
+      <span class="ui-float-label">
+        <p-dropdown [options]="tipoEmpresa" placeholder="." optionLabel="tem_tipo_empresa" [showClear]="false"
+        formControlName="tem_codigo"></p-dropdown>
+        <label> Tipo Empresa*</label>
+      </span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-1 input-margem"></div>
+
+    <div class="p-field p-col-12 p-md-1 input-margem">
+      <button pButton type="button" class="ui-button-rounded" label="Cadastrar"
+      (click)="saveEmpresa()"></button>
+    </div>
+
+    <div class="p-field p-col-12 p-md-1 input-margem">
+      <button pButton type="button" class="ui-button-rounded ui-button-secondary" label="Cancelar"></button>
+    </div>
+
+
+  </div>
+  <hr>
+  <p-table [columns]="cols" [value]="empresa" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Total registros: {totalRecords}">
+    <ng-template pTemplate="header" let-columns>
+      <tr style="font-size: 15px;">
+        <!--<th *ngFor="let col of columns">
+          {{col.header}}
+        </th>-->
+        <th style="width: 130px; ">Razão Social</th>
+        <th style="width: 110px;">Modalidade</th>
+        <th style="width: 180px;">Logradoruro</th>
+        <th style="width: 180px;">Cidade</th>
+        <th style="width: 40px;">UF</th>
+        <th style="width: 100px;">Tipo Empresa</th>
+        <th style="width: 80px;">Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empresa>
+      <tr style="height: 5px; font-size: 12px; text-align: center; margin-top: -5px; margin-bottom: -5px;">
+        <td>{{empresa.emp_razao_social}}</td>
+        <td>{{empresa.emp_operacoa}}</td>
+        <td>{{empresa.emp_logradouro}}</td>
+        <td>{{empresa.emp_cidade.municipio}}</td>
+        <td>{{empresa.emp_estado.sigla_estado}}</td>
+        <td>{{empresa.tem_codigo.tem_tipo_empresa}}</td>
+        <td>
+          <div class="ui-fluid ui-formgrid p-grid">
+            <div class="p-field p-col-12 p-md-5 input-margem">
+              <button pButton icon="fas fa-edit" class="ui-button-success btn-editar"></button>
+            </div>
+            <div class="p-field p-col-12 p-md-3 input-margem">
+              <button pButton icon="fas fa-trash-alt" class="ui-button-danger btn-editar"></button>
+            </div>
+          </div>
+        </td>
+
+        <!--<td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_razao_social}}</td>
+        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_cnpj}}</td>
+        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_operacoa}}</td>
+        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_logradouro}}</td>
+        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">
+          <div class="ui-fluid ui-formgrid p-grid">
+            <div class="p-field p-col-12 p-md-2 input-margem">
+              <button pButton icon="fas fa-edit" class="ui-button-success btn-editar"></button>
+            </div>
+            <div class="p-field p-col-12 p-md-3 input-margem">
+              <button pButton icon="fas fa-trash-alt" class="ui-button-danger btn-editar"></button>
+            </div>
+          </div>
+        </td>-->
+      </tr>
+    </ng-template>
+  </p-table>
+
+</p-card>

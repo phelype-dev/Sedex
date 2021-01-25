@@ -1,0 +1,211 @@
+<p-card header="Cadastro de clientes">
+  <form [formGroup]="formCliente">
+    <div formGroupName="usuario">
+    <p-fieldset legend="Login">
+      <div class="p-fluid p-formgrid p-grid" >
+        <div class="p-field p-formgrid p-col-12 p-sm-4">
+          <label for="login">Login.:</label>
+          <input
+            type="text"
+            name="login"
+            id="login"
+            maxlength="15"
+            formControlName="login"
+            pInputText
+            placeholder="Informe nome usuário"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2">
+          <label for="senha">Senha.:</label>
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            maxlength="20"
+            pInputText
+            pPassword
+            promptLabel="Crie sua Senha"
+            weakLabel="Fraca"
+            mediumLabel="Mediana"
+            strongLabel="Forte"
+            placeholder="°°°°°°°°°°°°°°°°"
+            formControlName="senha"
+          />
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Dados Pessoais" >
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-formgrid p-col-12 p-sm-4" formGroupName="pessoa">
+          <label for="nome">Nome Completo.:</label>
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            pInputText
+            formControlName="nome"
+            placeholder="Informe nome completo"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="pessoa">
+          <label for="cpf">CPF.:</label>
+          <input
+            type="text"
+            name="cpf"
+            id="cpf"
+            maxlength="11"
+            pInputText
+            placeholder="Informe CPF"
+            formControlName="cpf"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="pessoa">
+          <label for="dataNascimento">Dt.Nascimento.:</label>
+          <input
+            type="date"
+            name="dataNascimento"
+            id="dataNascimento"
+            pInputText
+            formControlName="dataNascimento"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="pessoa">
+          <label for="estadoCivil">Estado Civil.:</label>
+          <select pInputText name="estadoCivil" id="estadoCivil" formControlName="estadoCivil">
+            <option></option>
+            <option
+              *ngFor="let estCivil of estadoCivil"
+              [value]="estCivil.value"
+            >
+              {{ estCivil.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="pessoa">
+          <label for="sexo">Sexo.:</label>
+          <select pInputText name="sexo" id="sexo" formControlName="sexo">
+            <option></option>
+            <option *ngFor="let sex of sexo" [value]="sex.value">
+              {{ sex.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-3" formGroupName="pessoa">
+          <label for="email">Email.:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            pInputText
+            placeholder="Informe E-mail"
+            formControlName="email"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="pessoa">
+          <label for="telefone">Telefone.:</label>
+          <p-inputMask
+            type="text"
+            mask="(99)99999-9999"
+            name="telefone"
+            id="telefone"
+            placeholder="(XX)XXXXX-XXXX"
+            formControlName="telefone"
+          ></p-inputMask>
+        </div>
+      </div>
+    </p-fieldset>
+
+
+    <p-fieldset legend="Endereço">
+      <div class="p-fluid p-formgrid p-grid"formGroupName="pessoa">
+        <div class="p-field p-formgrid p-col-12 p-sm-6" formGroupName="endereco">
+          <label for="logradouro">Logradouro.:</label>
+          <input
+            type="text"
+            name="logradouro"
+            id="logradouro"
+            pInputText
+            placeholder="Informe Rua e número se possuir"
+            formControlName="logradouro"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-6" formGroupName="endereco">
+          <label for="complemento">Complemento.:</label>
+          <input
+            type="text"
+            name="complemento"
+            id="complemento"
+            pInputText
+            placeholder="APTO, SALA ou OUTROS"
+            formControlName="complemento"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-4" formGroupName="endereco">
+          <label for="bairro">Bairro/Setor.:</label>
+          <input
+            type="text"
+            name="bairro"
+            id="bairro"
+            pInputText
+            placeholder="Informe bairro/Setor"
+            formControlName="bairro"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-2" formGroupName="endereco">
+          <label for="cep">CEP.:</label>
+          <input
+            type="text"
+            name="cep"
+            id="cep"
+            pInputText
+            placeholder="XXXXXXXX"
+            formControlName="cep"
+          />
+        </div>
+
+        <div class="p-field p-formgrid p-col-12 p-sm-4" formGroupName="endereco">
+          <label for="cidade">Cidade.:</label>
+          <p-dropdown
+            [options]="cidades"
+            optionLabel="nomeCidade"
+            placeholder="Selecione"
+            formControlName="cidade"
+          ></p-dropdown>
+        </div>
+      </div>
+    </p-fieldset>
+    <div class="p-fluid p-formgrid p-grid possiton-btn">
+      <div class="p-field p-formgrid p-col-12 p-sm-2">
+        <button
+          type="button"
+          pButton
+          label="Adicionar"
+          class="ui-button-success"
+          (click)="onSave()"
+          [disabled]="!formCliente.valid"
+        ></button>
+      </div>
+
+      <div class="p-field p-formgrid p-col-12 p-sm-2">
+        <button
+          type="button"
+          pButton
+          label="Cancelar"
+          class="ui-button-danger"
+        ></button>
+      </div>
+    </div>
+  </div>
+  </form>
+</p-card>

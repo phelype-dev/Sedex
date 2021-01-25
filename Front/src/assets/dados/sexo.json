@@ -1,0 +1,13 @@
+[
+    {"code": "0","sexo": "Masculino"},
+    {"code": "1","sexo": "Feminino"},
+	{"code": "2","sexo": "Homem_transgênero"},
+    {"code": "3","sexo": "Mulher_Transgênero"},
+    {"code": "4","sexo": "Homem_Transexual"},
+    {"code": "5","sexo": "Mulher_Transexual"},
+    {"code": "6","sexo": "Cisgênero"},
+    {"code": "7","sexo": "Não_sei_responder"},
+    {"code": "8","sexo": "Prefiro_não_responder"},
+    {"code": "9","sexo": "Outros"}
+]   
+	

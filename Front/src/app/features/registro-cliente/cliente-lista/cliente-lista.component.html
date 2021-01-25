@@ -1,0 +1,126 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-formgrid p-col-12 p-sm-2">
+        <button
+          pButton
+          class="ui-button-success ui-sm-button"
+          label="Cadastro"
+          (click)="onNewCadastro()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</p-toolbar>
+
+<div class="card">
+  <p-table
+    #dt
+    [value]="clientes"
+    [rows]="7"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'usuario.pessoa.nome',
+      'modelo.descricao',
+      'usuario.pessoa.dataNascimento',
+      'usuario.pessoa.telefone'
+    ]"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <span class="p-input-icon-left">
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="colgroup">
+      <colgroup>
+        <col style="width: 35%" />
+        <col style="width: 13%" />
+        <col style="width: 17%" />
+        <col style="width: 28%" />
+        <col style="width: 22%" />
+        <col style="width: 12%" />
+        <col style="width: 20%" />
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="usuario.pessoa.nome">
+          Nome
+        </th>
+        <th pSortableColumn="usuario.pessoa.dataNascimento">
+          Dt.Nasc
+        </th>
+        <th pSortableColumn="usuario.pessoa.telefone">
+          Telefone
+        </th>
+        <th pSortableColumn="usuario.pessoa.email">
+          E-mail
+        </th>
+        <th pSortableColumn="usuario.endereco.cidade.cidadeNome">
+          Cidade
+        </th>
+        <th pSortableColumn="usuario.status">
+          Situação
+        </th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente async>
+      <tr>
+        <td>{{ cliente.usuario.pessoa.nome }}</td>
+        <td>
+          {{ cliente.usuario.pessoa.dataNascimento | date: "dd/MM/yyyy" }}
+        </td>
+        <td>{{ cliente.usuario.pessoa.telefone }}</td>
+        <td>{{ cliente.usuario.pessoa.email }}</td>
+        <td>{{ cliente.usuario.pessoa.endereco.cidade.nomeCidade }}</td>
+        <td>{{ cliente.usuario.status }}</td>
+        <td>
+          <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-3">
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="fas fa-info"
+                class="ui-button-raised ui-button-secondary btn-css"
+                (click)="onDetails(cliente.idCliente)"
+              ></button>
+            </div>
+            <div class="p-field p-col-3">
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="far fa-edit"
+                class="ui-button-raised ui-button-secondary btn-css"
+                (click)="onUpdate(cliente.idCliente)"
+              ></button>
+            </div>
+            <div class="p-field p-col-3">
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="far fa-trash-alt"
+                class="ui-button-raised ui-button-danger btn-css"
+
+              ></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

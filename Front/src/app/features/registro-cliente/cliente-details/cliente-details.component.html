@@ -1,0 +1,145 @@
+<div class="box-flex">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-fluid p-col-12 p-sm-2">
+      <button
+        class="ui-button-primary btn-sm"
+        pButton
+        label="Voltar"
+        (click)="onBack()"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="formulario" disabled="true">
+<p-fieldset legend="Detalhes Cliente">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-sm-4" >
+      <span>Nome</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="nome"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>CPF</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="cpf"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>DT.Nascimento</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="dataNascimento"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>Estado Civil</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="estadoCivil"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>Sexo</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="sexo"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-3">
+      <span>E-mail</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="email"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>Telefone</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="telefone"
+        disabled
+      />
+    </div>
+  </div>
+</p-fieldset>
+
+<p-fieldset legend="Endereço">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-sm-6">
+      <span>Logradouro</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="logradouro"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-6">
+      <span>Complemento</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="complemento"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-3">
+      <span>Bairro/Setor</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="bairro"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-2">
+      <span>CEP</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="cep"
+        disabled
+      />
+    </div>
+
+    <div class="p-field p-col-12 p-sm-3">
+      <span>Cidade</span>
+      <input
+        class="ui-input-sm"
+        pInputText
+        formControlName="cidade"
+        disabled
+      />
+    </div>
+
+  </div>
+</p-fieldset>
+</form>
+
+

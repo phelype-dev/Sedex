@@ -1,0 +1,7 @@
+[
+    {"code": "0","estCivil":"Solteiro"},
+    {"code": "1","estCivil":"Casado"},
+    {"code": "2","estCivil":"DIVORCIADO"},
+    {"code": "3","estCivil":"VIUVO"}
+	
+]
