@@ -8,6 +8,7 @@ import { DashboardComponent } from 'src/app/features/dashboard/dashboard.compone
 import { ListaDashboardComponent } from './lista-dashboard/lista-dashboard.component';
 import { DialogModule } from 'primeng/dialog';
 import { utils } from 'protractor';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 // tslint:disable-next-line: quotemark
 @NgModule({
@@ -16,7 +17,8 @@ import { utils } from 'protractor';
     DashboardRoutingModule,
     AppCommonModule,
     FieldsetModule,
-    DialogModule
+    DialogModule,
+    NgxBarcodeModule
   ],
   declarations: [DashboardComponent, ListaDashboardComponent, CEPPipe]
 })
