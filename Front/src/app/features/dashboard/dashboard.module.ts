@@ -6,8 +6,10 @@ import { AppCommonModule } from 'src/app/app.common.module';
 import { DashboardRoutingModule } from 'src/app/features/dashboard/dashboard.routing';
 import { DashboardComponent } from 'src/app/features/dashboard/dashboard.component';
 import { ListaDashboardComponent } from './lista-dashboard/lista-dashboard.component';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
+import { utils } from 'protractor';
 
+// tslint:disable-next-line: quotemark
 @NgModule({
   imports: [
     CommonModule,

@@ -1,3 +1,23 @@
 .border{
   border: black 1px solid;
 }
+
+.dest{
+  border-radius: 2px;
+  width: 200px;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.img-correios{
+  width: 161px;
+  height: 30px;
+  margin-left: 60px;
+}
+
+p{
+  font-size: 10px;
+}
+

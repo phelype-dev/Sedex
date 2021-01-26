@@ -4,11 +4,15 @@ import { RegSedexModel } from './../../../core/models/regSedexModel';
 import { RegsedexService } from './../../../core/services/regsedex.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-lista-dashboard',
   templateUrl: './lista-dashboard.component.html',
   styleUrls: ['./lista-dashboard.component.css']
 })
+
+
+
 export class ListaDashboardComponent implements OnInit {
 
   regsedex: RegSedexModel;
@@ -19,6 +23,7 @@ export class ListaDashboardComponent implements OnInit {
   idreg: any;
   reg: RegSedexModel;
   form: FormGroup;
+  codBarras: any;
 
   constructor(
     private regSedexService: RegsedexService,
@@ -32,13 +37,9 @@ export class ListaDashboardComponent implements OnInit {
       this.regsedex = regsedex;
       console.log(this.regsedex);
     });
-
-
-
   }
 
   ngOnInit(): void {
-    this.formSedex(this.idreg);
   }
 
   click() {
@@ -58,7 +59,11 @@ export class ListaDashboardComponent implements OnInit {
   pegaId(id: any) {
     this.regSedexService.buscaPorId(id).subscribe(data => {
       this.reg = data;
-      console.log(this.reg);
+      console.log(this.codBarras);
     });
+  }
+
+  printPage() {
+    window.print();
   }
 }
