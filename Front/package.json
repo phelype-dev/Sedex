@@ -32,6 +32,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^5.0.0-beta1",
     "chart.js": "^2.9.3",
+    "modules": "^0.4.0",
     "ngx-barcode": "^0.3.0",
     "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",

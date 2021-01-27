@@ -1,23 +1,38 @@
 .border{
   border: black 1px solid;
+  margin-bottom: -30px;
+  margin-top: auto;
 }
 
 .dest{
   border-radius: 2px;
   width: 200px;
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   background-color: black;
   text-align: center;
 }
 
 .img-correios{
-  width: 161px;
-  height: 30px;
-  margin-left: 60px;
+  width: 130px;
+  height: 20px;
+  margin-left:40px;
+  margin-top: 15px;
 }
 
 p{
-  font-size: 10px;
+  font-size: 8px;
+  font-style: unset;
 }
 
+.teste{
+  height: 450px;
+}
+
+.text-dest{
+  margin-top: -15px;
+}
+
+.hr_r{
+  margin-top: -5px;
+}

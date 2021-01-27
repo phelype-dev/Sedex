@@ -8,7 +8,6 @@ import { DashboardComponent } from 'src/app/features/dashboard/dashboard.compone
 import { ListaDashboardComponent } from './lista-dashboard/lista-dashboard.component';
 import { DialogModule } from 'primeng/dialog';
 import { NgxBarcodeModule } from 'ngx-barcode';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { BrowserModule } from '@angular/platform-browser';
     AppCommonModule,
     FieldsetModule,
     DialogModule,
-    BrowserModule,
     NgxBarcodeModule
   ],
   declarations: [DashboardComponent, ListaDashboardComponent, CEPPipe]

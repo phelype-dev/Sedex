@@ -1,3 +1,4 @@
+import { disableCursor } from '@fullcalendar/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RegSedexModel } from './../../../core/models/regSedexModel';
@@ -24,6 +25,7 @@ export class ListaDashboardComponent implements OnInit {
   reg: RegSedexModel;
   form: FormGroup;
   codBarras: any;
+  displayObs: boolean = false;
 
   constructor(
     private regSedexService: RegsedexService,
@@ -54,6 +56,12 @@ export class ListaDashboardComponent implements OnInit {
     this.displayModal = true;
     this.idreg = event;
     this.pegaId(this.idreg);
+  }
+
+  showObs() {
+    this.displayObs = true;
+    //this.idreg = event;
+    //this.pegaId(this.idreg);
   }
 
   pegaId(id: any) {
