@@ -84,6 +84,7 @@
          <p>{{reg.des_codigo.des_bairro}}, {{reg.cid_codigo.municipio}}/{{reg.est_codigo.sigla_estado}}</p>
          <p>{{reg.des_codigo.des_cep | cEP}}</p>
          <p>{{codBarras | cEP}}</p>
+         <ngx-barcode [bc-value]="codBarras" [bc-display-value]="true"></ngx-barcode>
        </div>
        <div class="p-field p-col-12 p-sm-12">
          <hr>
