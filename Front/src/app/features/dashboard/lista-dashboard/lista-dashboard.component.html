@@ -43,14 +43,16 @@
       <td>{{reg.sed_data_postagem | date:'dd/MM/yyyy'}}</td>
       <td>{{reg.des_codigo.des_aos_cuidados_abrev}}</td>
       <td>{{reg.cid_codigo.municipio}}</td>
-      <td>{{reg.des_codigo.des_cep |  cEP}}</td>
+      <td>{{reg.des_codigo.des_cep | cEP}}</td>
       <td>
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-sm-5">
-            <a (click)="showObs(reg.sed_codigo)">Visualizar</a>
+            <button pButton pRipple type="button" icon="fas fa-edit"
+            class="ui-button-rounded ui-button-text ui-button-success" (click)="showObs(reg.sed_codigo)"></button>
           </div>
           <div class="p-field p-col-12 p-sm-4">
-            <a (click)="showModalDialog(reg.sed_codigo)">Etiqueta</a>
+            <button pButton pRipple type="button" icon="fas fa-barcode"
+            class="ui-button-rounded ui-button-text" (click)="showModalDialog(reg.sed_codigo)"></button>
           </div>
         </div>
       </td>
@@ -106,20 +108,94 @@
   </p-footer>
 </p-dialog>
 
-<p-dialog [(visible)]="displayObs" position="center" [style]="{width: '60vw', height:'40vw'}">
-    <form>
+<p-dialog [(visible)]="displayObs" position="center" [style]="{width: '65vw'}">
+
+  <form [formGroup]="formulario">
+
+    <p-fieldset legend="Dados Postagem">
       <div class="p-fluid p-formgrid p-grid">
 
-        <div class="p-field p-col-12 p-md-6">
-          <label for="">Teste</label>
-          <input type="text" pInputTextarea>
+        <div class="p-field p-col-12 p-md-1">
+          <label for="">Cód:</label>
+          <input type="text" pInputTextarea formControlName="sed_codigo" disabled>
         </div>
 
+        <div class="p-field p-col-12 p-md-2">
+          <label for="">Data Registro</label>
+          <input type="text" pInputTextarea formControlName="sed_data_postagem" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="">Data Postagem</label>
+          <input type="text" pInputTextarea formControlName="sed_data_postagem" mode="date"  locale="pt-BR" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="">Cód Rastreio</label>
+          <input type="text" pInputTextarea formControlName="sed_codigo_rastreio">
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="">Valor</label>
+          <p-inputNumber  mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
+        </div>
+
+        <div class="p-field p-col-12 p-sm-3">
+          <label for="">Extraviado?</label>
+          <p-inputSwitch formControlName="sed_extraviou"></p-inputSwitch>
+        </div>
+
+        <div class="p-field p-col-12 p-sm-1">
+          <label for="">Pago?</label>
+          <p-inputSwitch formControlName="sed_pago"></p-inputSwitch>
+        </div>
 
       </div>
-    </form>
+    </p-fieldset>
+
+    <p-fieldset legend="Dados Remetente">
+      <div class="p-fluid p-formgrid p-grid">
+
+        <div class="p-field p-col-12 p-md-3">
+          <label for="">Empresa</label>
+          <p-dropdown [options]="empresa"   optionLabel="emp_descricao"  formControlName="emp_codigo"
+          [disabled]="true"></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-3">
+          <label for="">Espeditor</label>
+          <p-dropdown type="text" [options]="remetente" optionLabel="rem_abreviado" formControlName="rem_codigo"
+          [disabled]="true"></p-dropdown>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legenf="Dados Destinatário">
+      <div class="p-fluid p-formgrid p-grid">
+
+        <div class="p-field p-col-12 p-md-1">
+          <label for="">Estado</label>
+          <p-dropdown type="text" [options]="estados" optionLabel="sigla_estado" formControlName="est_codigo"
+          [disabled]="true"></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-5">
+          <label for="">Cidade</label>
+          <p-dropdown type="text" [options]="cidade" optionLabel="municipio" formControlName="cid_codigo"
+          [disabled]="true"></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-5" >
+          <label for="">Aos Cuidados</label>
+          <p-dropdown type="text" [options]="destinatarios" [disabled]="true"
+           optionLabel="des_aos_cuidados_abrev" formControlName="des_codigo"></p-dropdown>
+        </div>
+      </div>
+    </p-fieldset>
+  </form>
   <p-footer>
-    <button pButton type="button" label="Editar"></button>
+    <button pButton type="button" label="Editar" (click)="updateForms()"></button>
+    <button pButton type="button" class="ui-button-danger" label="Fechar" (click)="updateForms()"></button>
 
   </p-footer>
 </p-dialog>
