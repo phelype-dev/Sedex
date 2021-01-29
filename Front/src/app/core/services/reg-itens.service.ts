@@ -15,6 +15,9 @@ export class RegItensService {
 
   save(itens: RegItens): Observable<RegItens> {
     return this.http.post<RegItens>(`${environment.API}/regitens`, itens);
+  }
 
+  getItenById(id: RegItens): Observable<RegItens> {
+    return this.http.get<RegItens>(`${environment.API}/regitens/itens/${id}`);
   }
 }

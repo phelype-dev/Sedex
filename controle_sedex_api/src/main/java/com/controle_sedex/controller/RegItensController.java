@@ -1,6 +1,7 @@
 package com.controle_sedex.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,11 @@ public class RegItensController {
 		Reg_itens regItens = regItensRepository.findById(idRegItens)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi possível localizar o ID ::"+idRegItens));
 		return ResponseEntity.ok().body(regItens);
+	}
+	
+	@GetMapping("/itens/{sed_codigo}")
+	public List<Reg_itens> findByCidadeForEstado(@PathVariable(value = "sed_codigo") Long sed_codigo){
+		return regItensRepository.findByRegItensSedex(sed_codigo);
 	}
 	
 	@PutMapping("/update/{id}")

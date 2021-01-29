@@ -1,3 +1,5 @@
+import { RegItensService } from './../../../core/services/reg-itens.service';
+import { RegItens } from './../../../core/models/regItens.model';
 import { DestinatarioModel } from './../../../core/models/destinatario.model';
 import { EstadoModel } from './../../../core/models/Estado.model';
 import { DestinatariosService } from './../../../core/services/destinatarios.service';
@@ -15,14 +17,11 @@ import { RegSedexModel } from './../../../core/models/regSedexModel';
 import { RegsedexService } from './../../../core/services/regsedex.service';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-lista-dashboard',
   templateUrl: './lista-dashboard.component.html',
   styleUrls: ['./lista-dashboard.component.css']
 })
-
-
 
 export class ListaDashboardComponent implements OnInit {
 
@@ -44,6 +43,9 @@ export class ListaDashboardComponent implements OnInit {
   estados: EstadoModel;
   destinatarios: DestinatarioModel;
   dataPostagem = new Date();
+  displayDetails: boolean;
+  detailsReg: RegSedexModel;
+  regitens: RegItens;
 
   constructor(
     private regSedexService: RegsedexService,
@@ -54,7 +56,8 @@ export class ListaDashboardComponent implements OnInit {
     private empresaService: EmpresasService,
     private remetenteService: RemetenteService,
     private estadoService: EstadosService,
-    private destinatarioService: DestinatariosService
+    private destinatarioService: DestinatariosService,
+    private regItenService: RegItensService
   ) {
 
     this.cidadesService.getAllCidades().subscribe(data => {
@@ -136,8 +139,6 @@ export class ListaDashboardComponent implements OnInit {
     });
   }
 
-
-
   formUpdate(registro) {
     this.formulario.patchValue({
       sed_codigo: registro.sed_codigo,
@@ -167,6 +168,24 @@ export class ListaDashboardComponent implements OnInit {
   toDoList() {
     this.regSedexService.aguardandoEnvio().subscribe(regsedex => {
       this.regsedex = regsedex;
+    });
+  }
+
+  openDetails(event) {
+    this.displayDetails = true;
+    this.idreg = event;
+    this.showDetails(this.idreg);
+  }
+
+  showDetails(id) {
+    this.regSedexService.buscaPorId(id).subscribe(data => {
+      this.detailsReg = data;
+      console.log(this.detailsReg);
+    });
+
+    this.regItenService.getItenById(id).subscribe(data => {
+      this.regitens = data;
+      console.log(this.regitens);
     });
   }
 

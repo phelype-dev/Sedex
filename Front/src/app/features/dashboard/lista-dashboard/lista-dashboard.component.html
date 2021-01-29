@@ -46,11 +46,16 @@
       <td>{{reg.des_codigo.des_cep | cEP}}</td>
       <td>
         <div class="p-fluid p-formgrid p-grid">
-          <div class="p-field p-col-12 p-sm-5">
+
+          <div class="p-field p-col-12 p-sm-3">
+            <button pButton pRipple type="button" icon="fas fa-eye"
+            class="ui-button-rounded ui-button-text ui-button-success" (click)="openDetails(reg.sed_codigo)" ></button>
+          </div>
+          <div class="p-field p-col-12 p-sm-3">
             <button pButton pRipple type="button" icon="fas fa-edit"
             class="ui-button-rounded ui-button-text ui-button-success" (click)="showObs(reg.sed_codigo)"></button>
           </div>
-          <div class="p-field p-col-12 p-sm-4">
+          <div class="p-field p-col-12 p-sm-2">
             <button pButton pRipple type="button" icon="fas fa-barcode"
             class="ui-button-rounded ui-button-text" (click)="showModalDialog(reg.sed_codigo)"></button>
           </div>
@@ -196,6 +201,60 @@
   <p-footer>
     <button pButton type="button" label="Editar" (click)="updateForms()"></button>
     <button pButton type="button" class="ui-button-danger" label="Fechar" (click)="updateForms()"></button>
-
   </p-footer>
+</p-dialog>
+
+<p-dialog header="Detalhes Sedex" [(visible)]="displayDetails" position="center" [style]="{width: '65vw'}">
+  <div *ngIf="detailsReg">
+
+    <p-fieldset legend="Remetente">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-sm-3">
+          <label for=""><b>Empresa:</b> {{detailsReg.emp_codigo.emp_descricao}}</label>
+        </div>
+
+        <div class="p-field p-col-12 p-sm-3">
+          <label for=""><b>Espeditor:</b> {{detailsReg.rem_codigo.rem_abreviado}}</label>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Destinatários">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-sm-3">
+          <label for=""><b>Estado:</b> {{detailsReg.est_codigo.sigla_estado}}</label>
+        </div>
+
+        <div class="p-field p-col-12 p-sm-3">
+          <label for=""><b>Cidade:</b> {{detailsReg.cid_codigo.municipio}}</label>
+        </div>
+
+        <div class="p-field p-col-12 p-sm-3">
+          <label for=""><b>Aos cuidados:</b> {{detailsReg.des_codigo.des_aos_cuidados_abrev}}</label>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Itens enviados">
+      <p-table [value]="regitens" [paginator]="true" [rows]="8" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 10px;">Tipo Item</th>
+            <th style="width: 60px;">Descrição</th>
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-iten>
+          <tr style="text-align: center;">
+            <td>{{iten.tit_codigo.tit_tipo_item}}</td>
+            <td>{{iten.ips_descricao}}</td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </p-fieldset>
+
+  </div>
+
+
 </p-dialog>
