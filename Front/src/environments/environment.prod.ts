@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  version: '1.0.0'
+  API: 'https://api-controle-sedex.herokuapp.com/api',
+  version: '1.0.1'
 };

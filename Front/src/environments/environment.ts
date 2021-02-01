@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   API: 'https://api-controle-sedex.herokuapp.com/api',
   //API: 'http://localhost:8080/api',
   API_CEP: 'viacep.com.br/ws',
