@@ -9,7 +9,7 @@
   </div>
 </p-toolbar>
 <br>
-<p-table [value]="destinatario">
+<p-table [value]="destinatario" [paginator]="true" [rows]="8" [showCurrentPageReport]="true">
   <ng-template pTemplate="header">
     <tr>
       <th>Nome</th>
@@ -29,7 +29,7 @@
       <td>{{dest.cid_cidade.municipio}}</td>
       <td>{{dest.est_estado.sigla_estado}}</td>
       <td>{{dest.des_cep}}</td>
-      <td>{{dest.des_ativo}}</td>
+      <td>{{dest.des_ativo ? 'Sim' : 'Não'}}</td>
       <td>
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-3">

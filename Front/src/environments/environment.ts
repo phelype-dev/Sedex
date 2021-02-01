@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:8080/api',
+  API: 'https://api-controle-sedex.herokuapp.com/api',
+  //API: 'http://localhost:8080/api',
   API_CEP: 'viacep.com.br/ws',
   apiUrl: 'your-api-url.com',
   version: '1.0.0'
