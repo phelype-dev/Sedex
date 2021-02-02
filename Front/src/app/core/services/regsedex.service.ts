@@ -25,6 +25,10 @@ export class RegsedexService {
     return this.http.get<RegSedexModel>(`${environment.API}/regsedex/semdespacho`);
   }
 
+  sedexEnviados(): Observable<RegSedexModel> {
+    return this.http.get<RegSedexModel>(`${environment.API}/regsedex/enviados`);
+  }
+
   updateForm(regsedex: RegSedexModel): Observable<RegSedexModel> {
     return this.http.put<RegSedexModel>(`${environment.API}/regsedex/update/`, regsedex);
   }

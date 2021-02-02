@@ -1,6 +1,7 @@
 package com.controle_sedex.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class DestinatarioController {
 	@PostMapping
 	public Destinatarios addDestinatario(@Validated @RequestBody Destinatarios destinatario) {
 		return destinatarioRepository.save(destinatario);
+	}
+	
+	@GetMapping("/cidade/{cid_codigo}")
+	public List<Destinatarios> getAllDestCidade(@PathVariable(value = "cid_codigo") Long cid_codigo){
+		return destinatarioRepository.getAllDestInCidade(cid_codigo);
 	}
 	
 	@GetMapping("/{id}")

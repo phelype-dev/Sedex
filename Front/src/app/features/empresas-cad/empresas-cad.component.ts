@@ -1,3 +1,4 @@
+import { CidadeModel } from './../../core/models/Cidade.model';
 
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -8,10 +9,9 @@ import { EstadoModel } from './../../core/models/Estado.model';
 import { EmpresasService } from './../../core/services/empresas.service';
 import { Component, OnInit } from '@angular/core';
 import { EmpresaModel } from 'src/app/core/models/empresa.model';
-import { CidadeModel } from 'src/app/core/models/Cidade.model';
 import { EstadosService } from 'src/app/core/services/estados.service';
-import {Message} from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { Message } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-empresas-cad',
@@ -23,15 +23,18 @@ export class EmpresasCadComponent implements OnInit {
   cols: any;
   empresa: EmpresaModel;
   cidades: CidadeModel;
+  cid: CidadeModel;
   estados: EstadoModel;
   tipoEmpresa: TipoEmpresaModel;
   formEmpresa: FormGroup;
-  msg: Message[]=[];
+  msg: Message[] = [];
+  cidade: any[] = [];
+  idEstado: any;
 
   constructor(
     private empresaService: EmpresasService,
     private tipoEmpresaService: TipoEmpresaService,
-    private CidadesService: CidadesService,
+    private cidadesService: CidadesService,
     private estadoService: EstadosService,
     private fb: FormBuilder,
     private router: Router,
@@ -40,15 +43,13 @@ export class EmpresasCadComponent implements OnInit {
 
     this.empresaService.getAllEmpresa().subscribe(data => {
       this.empresa = data;
-      console.log(this.empresa)
     });
 
     this.tipoEmpresaService.getAllTipoEmpresa().subscribe(data => {
       this.tipoEmpresa = data;
-      console.log(this.tipoEmpresa);
     });
 
-    this.CidadesService.getAllCidades().subscribe(data => {
+    this.cidadesService.getAllCidades().subscribe(data => {
       this.cidades = data;
     });
 
@@ -56,8 +57,15 @@ export class EmpresasCadComponent implements OnInit {
       this.estados = data;
     });
 
+  }
 
-
+  pegaId(event: EstadoModel) {
+    const myJSON = JSON.stringify(event);
+    this.idEstado = event.est_codigo;
+    console.log(myJSON + this.idEstado);
+    this.cidadesService.getAllCidadeByEstado(this.idEstado).subscribe(data => {
+      this.cid = data;
+    });
   }
 
   ngOnInit(): void {
@@ -68,7 +76,7 @@ export class EmpresasCadComponent implements OnInit {
       { field: 'emp.operacao', header: 'Modalidade', width: '15px' },
       { field: 'emp.logradouro', header: 'Logradoruro', width: '35px' },
       { field: '', header: '', width: '5px' }
-    ]
+    ];
 
     this.FormEmpresa();
   }
@@ -95,12 +103,12 @@ export class EmpresasCadComponent implements OnInit {
 
   showError() {
     this.msg = [];
-    this.msg.push({severity:'error', summary:'Atenção!', detail:'Preencha os campos obrigatórios'});
+    this.msg.push({ severity: 'error', summary: 'Atenção!', detail: 'Preencha os campos obrigatórios' });
   }
 
   showSuccess() {
     this.msg = [];
-    this.msg.push({severity:'sucess', summary:'', detail:'Registro cadastrado com sucesso!'});
+    this.msg.push({ severity: 'sucess', summary: '', detail: 'Registro cadastrado com sucesso!' });
   }
 
   saveEmpresa() {

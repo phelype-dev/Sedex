@@ -1,0 +1,120 @@
+<div class="card">
+  <p-table [value]="regSedexModel" styleClass="ui-datatable-sm">
+    <ng-template pTemplate="caption">
+      Sedex Enviados
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:10px;">#</th>
+        <th style="width:35px;">Dt. Postagem:</th>
+        <th style="width:80px;">Destinatário</th>
+        <th style="width:80px;">Cidade</th>
+        <th style="width:5px;">UF</th>
+        <th style="width:55px;"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-reg>
+      <tr>
+        <td>{{reg.sed_codigo}}</td>
+        <td>{{reg.sed_data_modificacao | date: 'dd/MM/yyyy'}}</td>
+        <td>{{reg.des_codigo.des_aos_cuidados_abrev}}</td>
+        <td>{{reg.cid_codigo.municipio}}</td>
+        <td>{{reg.cid_codigo.est_codigo.sigla_estado}}</td>
+        <td>
+          <div class="p-fluid p-formgrid p-grid ">
+            <div class="p-field p-grid p-sm-6" style="margin-left: 5px;">
+              <button pButton class="ui-button-success" label="Detalhes" (click)="showDetails(reg.sed_codigo)"></button>
+            </div>
+            <div class="p-field p-grid p-sm-6" style="margin-left: 5px;">
+              <button pButton class="ui-button-success" icon="fas fa-mail-bulk"
+            (click)="rastreio(reg.sed_codigo_rastreio)"></button>
+            </div>
+          </div>
+        </td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Detalhes" [(visible)]="showDetail" [modal]="true" [style]="{width: '80vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false" position="top">
+  <div *ngIf="sedex">
+    <p-fieldset legend="Dados remetente">
+      <div class="p-fluid p-formgrid p-grid ">
+        <div class="p-field p-grid p-sm-4">
+          <label for=""><b>Empresa:</b><span style="margin-left: 5px;">
+              {{sedex.emp_codigo.emp_descricao}}</span></label>
+        </div>
+        <div class="p-field p-grid p-sm-4">
+          <label for=""><b>Remetente:</b><span style="margin-left: 5px;">
+              {{sedex.rem_codigo.rem_abreviado}}</span></label>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Dados Remetente">
+      <div class="p-fluid p-formgrid p-grid ">
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Destinatário:</b><span style="margin-left: 5px;">
+              {{sedex.des_codigo.des_aos_cuidados_abrev}}</span></label>
+        </div>
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Remetente:</b><span style="margin-left: 5px;">
+              {{sedex.rem_codigo.rem_abreviado}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Cidade:</b><span style="margin-left: 5px;">
+              {{sedex.cid_codigo.municipio}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Estado:</b><span style="margin-left: 5px;">
+              {{sedex.est_codigo.sigla_estado}}</span></label>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Dados Envio">
+      <div class="p-fluid p-formgrid p-grid ">
+
+        <div class="p-field p-grid p-sm-3">
+          <label for=""><b>Data Registro:</b><span style="margin-left: 5px;">
+              {{sedex.sed_data_postagem | date: 'dd/MM/yyyy hh:mm:ss'}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-3">
+          <label for=""><b>Data Postagem:</b><span style="margin-left: 5px;">
+              {{sedex.sed_data_modificacao | date: 'dd/MM/yyyy hh:mm:ss'}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Sedex Pago:</b><span style="margin-left: 5px;">
+              {{sedex.sed_pago ? 'Sim' : 'Não'}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Sedex extraviou:</b><span style="margin-left: 5px;">
+              {{sedex.sed_extraviou ? 'Sim' : 'Não'}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Rastreio:</b><span style="margin-left: 5px;">
+              {{sedex.sed_codigo_rastreio}}</span></label>
+        </div>
+
+        <div class="p-field p-grid p-sm-2">
+          <label for=""><b>Valor:</b><span style="margin-left: 5px;">
+              {{sedex.sed_valor | currency:"BRL"}}</span></label>
+        </div>
+
+      </div>
+    </p-fieldset>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

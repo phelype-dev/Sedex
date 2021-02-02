@@ -1,4 +1,4 @@
-<div class="p-grid">
+<!--<div class="p-grid">
 
   <div class="p-col">
     <p-card header="Total Envios:">
@@ -18,11 +18,17 @@
   </div>
 
 </div>
-<hr>
+<hr>-->
 <div class="p-grid">
   <div class="p-col-2">
     <button pButton pRipple label="Novo Registro" icon="fas fa-folder-plus"
       class="ui-button-rounded ui-button-secondary" style="font-size: 15px; text-align: center;" (click)="click()"
+      [disabled]="btnNovoRegistro"></button>
+  </div>
+
+  <div class="p-col-2">
+    <button pButton pRipple label="Sedex Enviados" icon="fas fa-paper-plane" (click)="openSedexSends()"
+      class="ui-button-rounded ui-button-secondary" style="font-size: 15px; text-align: center;"
       [disabled]="btnNovoRegistro"></button>
   </div>
 
@@ -83,8 +89,7 @@
           <p class="text-dest">{{reg.des_codigo.des_destinatario}}</p>
           <p><b>Aos Cuidados:</b></p>
           <p>{{reg.des_codigo.des_aos_cuidados}}</p>
-          <p>Telefone:</p>
-          <p>{{reg.des_codigo.des_fixo}}</p>
+          <p>Telefone: {{reg.des_codigo.des_fixo | fixo}}</p>
           <p><b>Endereço:</b></p>
           <p>{{reg.des_codigo.des_logradouro}}, {{reg.des_codigo.des_numero}}, {{reg.des_codigo.des_complemento}}</p>
           <p>{{reg.des_codigo.des_bairro}}, {{reg.cid_codigo.municipio}}/{{reg.est_codigo.sigla_estado}}</p>
@@ -142,7 +147,7 @@
 
         <div class="p-field p-col-12 p-md-2">
           <label for="">Valor</label>
-          <p-inputNumber  mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
+          <p-inputNumber  mode="currency" currency="BRL" locale="pt-BR" formControlName="sed_valor"></p-inputNumber>
         </div>
 
         <div class="p-field p-col-12 p-sm-3">
@@ -255,6 +260,5 @@
     </p-fieldset>
 
   </div>
-
-
 </p-dialog>
+

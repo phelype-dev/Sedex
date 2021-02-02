@@ -43,6 +43,11 @@ const appRoutes: Routes = [
       path: 'etiqueta',
       loadChildren: () => import('src/app/features/etiqueta/etiqueta.module').then(m => m.EtiquetaModule),
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'sedex-enviados',
+      loadChildren: () => import('src/app/features/sedexsends/sedexsends.module').then(m => m.SedexsendsModule),
+      canActivate: [AuthGuard]
     }
 
 

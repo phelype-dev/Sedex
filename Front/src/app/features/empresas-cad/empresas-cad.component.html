@@ -61,19 +61,28 @@
       </span>
     </div>
 
+    <div class="p-field p-col-12 p-md-2 input-margem">
+      <span class="ui-float-label" >
+        <!--<select formControlName="emp_estado" pInputText
+        (ngModelChange)="pegaId($event)">
+          <option *ngFor="let est of estados" [value]="est.est_codigo">
+           {{est.sigla_estado}}</option>
+        </select>-->
+        <p-dropdown [options]="estados" placeholder="."
+         (ngModelChange)="pegaId($event)" optionLabel="sigla_estado" formControlName="emp_estado"
+        ></p-dropdown>
+      </span>
+    </div>
+
     <div class="p-field p-col-12 p-md-3 input-margem">
       <span class="ui-float-label">
-        <p-dropdown [options]="cidades" placeholder="." optionLabel="municipio" formControlName="emp_cidade"></p-dropdown>
+        <p-dropdown [options]="cid" placeholder="." optionLabel="municipio" formControlName="emp_cidade"
+        [filter]="true" itemSize="5"></p-dropdown>
         <label>Cidade*</label>
       </span>
     </div>
 
-    <div class="p-field p-col-12 p-md-2 input-margem">
-      <span class="ui-float-label">
-        <p-dropdown [options]="estados" placeholder="." optionLabel="sigla_estado" formControlName="emp_estado"></p-dropdown>
-        <label>Estado*</label>
-      </span>
-    </div>
+
 
     <div class="p-field p-col-12 p-md-1 input-margem">
       <span class="ui-float-label">
@@ -145,21 +154,6 @@
             </div>
           </div>
         </td>
-
-        <!--<td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_razao_social}}</td>
-        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_cnpj}}</td>
-        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_operacoa}}</td>
-        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">{{empresa.emp_logradouro}}</td>
-        <td style="height:2px; width: 15px; text-align: center; font-size: 12px;">
-          <div class="ui-fluid ui-formgrid p-grid">
-            <div class="p-field p-col-12 p-md-2 input-margem">
-              <button pButton icon="fas fa-edit" class="ui-button-success btn-editar"></button>
-            </div>
-            <div class="p-field p-col-12 p-md-3 input-margem">
-              <button pButton icon="fas fa-trash-alt" class="ui-button-danger btn-editar"></button>
-            </div>
-          </div>
-        </td>-->
       </tr>
     </ng-template>
   </p-table>

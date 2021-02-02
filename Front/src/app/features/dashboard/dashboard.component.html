@@ -12,18 +12,21 @@
             <label for="">Empresa</label>
             <p-dropdown [options]="empresaModel" optionLabel="emp_razao_social" placeholder="SELECIONE"
               formControlName="emp_codigo"></p-dropdown>
+              <p-message severity="error" text="Empresa e obrigatório"
+                *ngIf="!formRegSedex.controls['emp_codigo'].valid&&formRegSedex.controls['emp_codigo'].touched"></p-message>
           </div>
 
           <div class="p-field p-col-12 p-md-6">
             <label for="">Espeditor</label>
             <p-dropdown [options]="remetenteModel" optionLabel="rem_abreviado" placeholder="SELECIONE"
               formControlName="rem_codigo"></p-dropdown>
+              <p-message severity="error" text="Empresa e obrigatório"
+                *ngIf="!formRegSedex.controls['rem_codigo'].valid&&formRegSedex.controls['rem_codigo'].touched"></p-message>
           </div>
 
         </div>
       </p-fieldset>
     </div>
-
 
     <div class="p-col-7">
 
@@ -33,22 +36,24 @@
           <div class="p-field p-col-12 p-sm-4">
             <label for="">Estado:</label>
             <p-dropdown [options]="estadoModel" optionLabel="estado" placeholder="SELECIONE"
-              formControlName="est_codigo"></p-dropdown>
+            (ngModelChange)="pegaId($event)"  formControlName="est_codigo"></p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-4">
             <label for="">Cidade:</label>
-            <p-dropdown [options]="cidadeModel" optionLabel="municipio" [filter]="true" [virtualScroll]="true"
-              itemSize="5" placeholder="SELECIONE" formControlName="cid_codigo"></p-dropdown>
+            <p-dropdown [options]="cidade" optionLabel="municipio" [filter]="true" [virtualScroll]="true"
+              itemSize="5" placeholder="SELECIONE" formControlName="cid_codigo"
+              (ngModelChange)="pegaCidadeId($event)"></p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-4">
             <label for="">Aos Cuidados de:</label>
-            <p-dropdown [options]="destinatarioModel" optionLabel="des_aos_cuidados_abrev" placeholder="SELECIONE"
+            <p-dropdown [options]="destNome" optionLabel="des_aos_cuidados_abrev" placeholder="SELECIONE"
               formControlName="des_codigo"></p-dropdown>
           </div>
           <div class="p-field p-col-12 p-md-3">
-            <button pButton label="Registrar" (click)="saveRegistro()"></button>
+            <button pButton label="Registrar" (click)="saveRegistro()"
+            [disabled]="!formRegSedex.valid"></button>
           </div>
         </div>
 
@@ -101,5 +106,6 @@
       </p-table>
     </div>
   </div>
+  <button pButton class="ui-button-danger" label="Sair" (click)="sair()"></button>
 
 </form>

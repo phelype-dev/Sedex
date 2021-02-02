@@ -20,4 +20,8 @@ export class DestinatariosService {
   getAllDestinatarios(): Observable<DestinatarioModel> {
     return this.http.get<DestinatarioModel>(`${environment.API}/destinatario`);
   }
+
+  getAllDestCidade(cid_codigo: DestinatarioModel): Observable<DestinatarioModel> {
+    return this.http.get<DestinatarioModel>(`${environment.API}/destinatario/cidade/${cid_codigo}`);
+  }
 }

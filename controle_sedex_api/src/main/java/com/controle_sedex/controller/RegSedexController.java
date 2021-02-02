@@ -42,6 +42,11 @@ public class RegSedexController {
 		return regSedexRepository.findByRegNãoListado();
 	}
 	
+	@GetMapping("/enviados")
+	public List<Reg_Sedex> findBySedEnviados(){
+		return regSedexRepository.findByRegEnviados();
+	}
+	
 	@PostMapping
 	public Reg_Sedex addRegSedex(@Validated @RequestBody Reg_Sedex regSedex) {
 		return regSedexRepository.save(regSedex);

@@ -1,3 +1,4 @@
+import { FixoPipe } from './../PipeMask/fixo.pipe';
 import { DropdownModule } from 'primeng/dropdown';
 import { CEPPipe } from '../PipeMask/cep.pipe';
 import { FieldsetModule, ButtonModule } from 'primeng';
@@ -27,6 +28,6 @@ import {InputNumberModule} from 'primeng/inputnumber';
     InputNumberModule,
     ButtonModule
   ],
-  declarations: [DashboardComponent, ListaDashboardComponent, CEPPipe]
+  declarations: [DashboardComponent, ListaDashboardComponent, CEPPipe, FixoPipe]
 })
 export class DashboardModule { }

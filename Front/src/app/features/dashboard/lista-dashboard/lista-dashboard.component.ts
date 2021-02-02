@@ -189,4 +189,7 @@ export class ListaDashboardComponent implements OnInit {
     });
   }
 
+  openSedexSends() {
+    this.router.navigate(['/main/sedex-enviados']);
+  }
 }

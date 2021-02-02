@@ -13,5 +13,8 @@ public interface RegSedexRepository extends JpaRepository<Reg_Sedex, Long>{
 	
 	@Query(value = "select * from cad_reg_sedex where sed_pago = false order by sed_data_postagem desc", nativeQuery = true)
 	List<Reg_Sedex> findByRegNãoListado();
+	
+	@Query(value = "select * from cad_reg_sedex where sed_pago = true order by sed_data_postagem desc", nativeQuery = true)
+	List<Reg_Sedex> findByRegEnviados();
 
 }

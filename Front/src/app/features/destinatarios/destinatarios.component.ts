@@ -92,7 +92,7 @@ export class DestinatariosComponent implements OnInit {
       des_data_alteracao: [null],
       des_latitude: [null],
       des_longitude: [null],
-    })
+    });
   }
 
 

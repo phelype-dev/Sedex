@@ -1,8 +1,9 @@
+import { Router } from '@angular/router';
+import { CidadeModel } from './../../core/models/Cidade.model';
 import { RegItensService } from './../../core/services/reg-itens.service';
 import { RegItens } from './../../core/models/regItens.model';
 import { TipoItemService } from './../../core/services/tipo-item.service';
 import { TipoItemModel } from './../../core/models/tipoItem.model';
-import { async } from '@angular/core/testing';
 import { RegsedexService } from './../../core/services/regsedex.service';
 import { RegSedexModel } from './../../core/models/regSedexModel';
 import { Validators } from '@angular/forms';
@@ -16,7 +17,6 @@ import { EmpresasService } from './../../core/services/empresas.service';
 import { RemetenteModel } from 'src/app/core/models/rememetente.model';
 import { EmpresaModel } from './../../core/models/empresa.model';
 import { Component, OnInit } from '@angular/core';
-import { CidadeModel } from 'src/app/core/models/Cidade.model';
 import { EstadosService } from 'src/app/core/services/estados.service';
 
 @Component({
@@ -43,6 +43,10 @@ export class DashboardComponent implements OnInit {
   teste: number;
   regItens: RegItens;
   itensArray: any[] = [];
+  cidade: CidadeModel;
+  idEstado: any;
+  cidadeId: any;
+  destNome: DestinatarioModel;
 
   constructor(
     private empresaService: EmpresasService,
@@ -54,7 +58,8 @@ export class DashboardComponent implements OnInit {
     private regSedexService: RegsedexService,
     private fbs: FormBuilder,
     private tipoItemService: TipoItemService,
-    private regItenService: RegItensService
+    private regItenService: RegItensService,
+    private router: Router
   ) {
 
     this.empresaService.getAllEmpresaTransp().subscribe(data => {
@@ -102,6 +107,20 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  pegaCidadeId(event: CidadeModel) {
+    this.cidadeId = event.cid_codigo;
+    this.destinatarioService.getAllDestCidade(this.cidadeId).subscribe(data => {
+      this.destNome = data;
+    });
+  }
+
+  pegaId(event: EstadoModel) {
+    this.idEstado = event.est_codigo;
+    console.log(this.idEstado);
+    this.cidadeService.getAllCidadeByEstado(this.idEstado).subscribe(data => {
+      this.cidade = data;
+    });
+  }
 
 
   saveRegistro() {
@@ -146,4 +165,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  sair() {
+    this.router.navigate(['main/dashboard']);
+  }
 }
